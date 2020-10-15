@@ -38,6 +38,7 @@ var server = http.createServer(function(request, response){
         update(request, response);
     }else if(urlJson.pathname=="/category"){//동물정보를 요청하면..
         getCategory(request, response);
+        // animal(request, response);
     }
 
 });
@@ -214,8 +215,10 @@ function update(request, response){
 // 동물의 정보 가져오기
 function getCategory(request, response){
     var sql="select * from category";
-
-    con.query(sql, function(error, record, fields){
+    var sql2="select * from animal";
+    
+    con.query(sql, sql2, function(error, record, fields){
+        console.log("record : ",record);
         if(error){
             console.log("동물구분 목록 조회실패", error);
         }else{
@@ -232,6 +235,29 @@ function getCategory(request, response){
         }
     });
 }
+
+// function animal(request, response){
+//     var sql="select * from animal";
+//     con.query(sql, function(error, record, fields){
+//         console.log("record2 : ", record);
+//         if(error){
+//             console.log("동물이름 목록 조회실패", error);
+//         }else{
+//             console.log("들어왔어요");
+//             fs.readFile("./animal.ejs", "utf-8", function(err, data){
+//                 console.log("나왔어요");
+//                 if(err){
+//                     console.log("animal.ejs 읽기 실패", err);
+//                 }else{
+//                     response.writeHead(200, {"Content-Type":"text/html;charset=utf-8"});
+//                     response.end(ejs.render(data, {
+//                         "animalArray":record
+//                     }));
+//                 }
+//             });
+//         }
+//     });
+// }
 
 //mysql 접속 
 function connect(){
