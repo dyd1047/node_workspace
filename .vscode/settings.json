@@ -1,3 +1,4 @@
 {
-    "liveServer.settings.CustomBrowser": "chrome"
+    "liveServer.settings.CustomBrowser": "chrome",
+    "bracket-pair-colorizer-2.colorMode": "Independent"
 }
